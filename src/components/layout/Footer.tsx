@@ -133,7 +133,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               {SOCIALS.map((social) => (
                 <a
                   key={social.label}
@@ -187,15 +187,15 @@ export default function Footer() {
               One email a week. Unsubscribe anytime.
             </p>
           </div>
-          <form className="flex w-full md:w-auto gap-3">
+          <form className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
             <input
               type="email"
               placeholder="you@email.com"
-              className="flex-1 md:w-72 px-4 py-3 rounded-lg bg-blue-900/40 border border-blue-800 text-sm text-blue-50 placeholder:text-blue-300/50 focus:outline-none focus:border-blue-500/50 transition-colors duration-150"
+              className="flex-1 min-w-0 sm:w-72 px-4 py-3 rounded-lg bg-blue-900/40 border border-blue-800 text-sm text-blue-50 placeholder:text-blue-300/50 focus:outline-none focus:border-blue-500/50 transition-colors duration-150"
             />
             <button
               type="submit"
-              className="px-6 py-3 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-500 transition-colors duration-150 shrink-0"
+              className="px-6 py-3 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-500 transition-colors duration-150 shrink-0 w-full sm:w-auto"
             >
               Subscribe
             </button>

@@ -55,10 +55,11 @@ export default function Navbar() {
       initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${scrolled
-        ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800"
-        : "bg-transparent border-b border-transparent"
-        }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800"
+          : "bg-transparent border-b border-transparent"
+      }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -79,8 +80,8 @@ export default function Navbar() {
           </span>
         </Link>
 
+        {/* Middle nav — Products dropdown, Contact, About ONLY. No search here. */}
         <div className="hidden lg:flex items-center gap-10">
-          {/* Products dropdown */}
           <div
             className="relative"
             onMouseEnter={openProducts}
@@ -92,8 +93,9 @@ export default function Navbar() {
             >
               Products
               <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""
-                  }`}
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  productsOpen ? "rotate-180" : ""
+                }`}
               />
             </Link>
 
@@ -123,17 +125,6 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button
-            onClick={() => {
-              setSearchOpen(true);
-              setMobileOpen(false);
-            }}
-            className="flex items-center gap-3 py-3 text-zinc-700 dark:text-zinc-300 font-medium"
-          >
-            <Search className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
-            Search
-          </button>
-
           <Link
             href="/contact"
             className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors duration-150"
@@ -148,15 +139,16 @@ export default function Navbar() {
           </Link>
         </div>
 
+        {/* Right cluster — ONE search trigger (icon + label), then theme toggle, cart, Shop Now */}
         <div className="hidden lg:flex items-center gap-3">
-          <ThemeToggle />
           <button
-            aria-label="Search"
             onClick={() => setSearchOpen(true)}
-            className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
+            className="flex items-center gap-2 px-3 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
           >
             <Search className="w-4 h-4" />
+            Search
           </button>
+          <ThemeToggle />
           <button
             aria-label="Cart"
             className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
@@ -193,15 +185,26 @@ export default function Navbar() {
             className="lg:hidden overflow-hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800"
           >
             <div className="px-6 py-6 flex flex-col gap-1">
-              {/* Products accordion */}
+              <button
+                onClick={() => {
+                  setSearchOpen(true);
+                  setMobileOpen(false);
+                }}
+                className="flex items-center gap-3 py-3 text-zinc-700 dark:text-zinc-300 font-medium"
+              >
+                <Search className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                Search
+              </button>
+
               <button
                 onClick={() => setMobileProductsOpen((v) => !v)}
                 className="flex items-center justify-between py-3 text-zinc-700 dark:text-zinc-300 font-medium"
               >
                 Products
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180" : ""
-                    }`}
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    mobileProductsOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
               <AnimatePresence>
@@ -253,6 +256,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
       {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
     </motion.header>
   );

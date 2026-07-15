@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Laptop, Monitor, Tablet, Smartphone, Headphones } from "lucide-react";
+import Image from "next/image";
+import { Monitor, Tablet, Headphones } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "All Products — Qubee Electronics",
   description: "Browse laptops, desktops, tablets, phones, and accessories at Qubee Electronics.",
 };
 
-const CATEGORIES = [
-  { slug: "laptops", label: "Laptops", icon: Laptop, blurb: "MacBooks, ThinkPads, EliteBooks, and more" },
+const PHOTO_CATEGORIES = [
+  {
+    slug: "laptops",
+    label: "Laptops",
+    blurb: "MacBooks, ThinkPads, EliteBooks, and more",
+    image: "/images/products/category-laptops.jpg",
+  },
+  {
+    slug: "phones",
+    label: "Phones",
+    blurb: "iPhone, Galaxy, Tecno, and more",
+    image: "/images/products/category-phones.jpg",
+  },
+];
+
+const ICON_CATEGORIES = [
   { slug: "desktops", label: "Desktops", icon: Monitor, blurb: "Full towers and all-in-ones" },
   { slug: "tablets", label: "Tablets", icon: Tablet, blurb: "iPads and Android tablets" },
-  { slug: "phones", label: "Phones", icon: Smartphone, blurb: "iPhone, Galaxy, Tecno, and more" },
   { slug: "accessories", label: "Accessories", icon: Headphones, blurb: "Chargers, cases, and audio" },
 ];
 
@@ -28,8 +42,33 @@ export default function ProductsPage() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CATEGORIES.map((cat) => (
+        {/* Photo cards for categories with real in-store stock */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+          {PHOTO_CATEGORIES.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/products/${cat.slug}`}
+              className="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-blue-500/50 transition-colors duration-300 aspect-4/3"
+            >
+              <Image
+                src={cat.image}
+                alt={cat.label}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
+              <div className="relative h-full flex flex-col justify-end p-8">
+                <h2 className="text-2xl font-bold text-white mb-2">{cat.label}</h2>
+                <p className="text-sm text-zinc-300">{cat.blurb}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Icon cards for categories without real stock photos yet */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {ICON_CATEGORIES.map((cat) => (
             <Link
               key={cat.slug}
               href={`/products/${cat.slug}`}
