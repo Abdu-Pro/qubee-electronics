@@ -20,7 +20,7 @@ const ALL_PRODUCTS: SearchResult[] = Object.entries(PRODUCTS).flatMap(
     products.map((p) => ({
       id: p.id,
       name: p.name,
-      image: p.image,
+      image: p.images[0],
       categorySlug,
       categoryLabel: CATEGORY_LABELS[categorySlug],
     }))
