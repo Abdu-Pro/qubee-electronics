@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import ImageGallery from "@/components/ui/ImageGallery";
 import { X, Phone, Send, MapPin, Truck, ShieldCheck } from "lucide-react";
 
 interface ProductLike {
   name: string;
-  image: string;
+  images: string[];
   description?: string;
   category?: string;
 }
@@ -48,18 +48,12 @@ export default function ProductDetailModal({
           onClick={(e) => e.stopPropagation()}
           className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl"
         >
-          <div className="relative aspect-16/9">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 640px"
-            />
+          <div className="relative">
+            <ImageGallery images={product.images} alt={product.name} />
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-4 right-4 w-9 h-9 rounded-lg bg-zinc-950/60 backdrop-blur-sm flex items-center justify-center text-zinc-200 hover:text-white transition-colors duration-150"
+              className="absolute top-4 right-4 w-9 h-9 rounded-lg bg-zinc-950/60 backdrop-blur-sm flex items-center justify-center text-zinc-200 hover:text-white transition-colors duration-150 z-20"
             >
               <X className="w-4 h-4" />
             </button>
