@@ -38,7 +38,7 @@ export default function CategoryGrid({
             className="group relative text-left overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-red-400/50 dark:hover:border-red-500/40 transition-colors duration-300 aspect-4/5"
           >
             <Image
-              src={product.image}
+              src={product.images[0]}
               alt={product.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"

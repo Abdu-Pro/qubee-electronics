@@ -88,7 +88,7 @@ export default function FeaturedDeals() {
                 className="group absolute inset-0 w-full h-full text-left overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800"
               >
                 <Image
-                  src={deal.image}
+                  src={deal.images[0]}
                   alt={deal.name}
                   fill
                   priority={index === 0}
